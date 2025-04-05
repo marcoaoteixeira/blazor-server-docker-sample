@@ -1,0 +1,28 @@
+name: blazor-server-app
+
+# To use HTTPS, you'll need a certificate. Also, define Kestrel env variables:
+# ASPNETCORE_Kestrel__Certificates__Default__Path: The path to the certificate.
+# ASPNETCORE_Kestrel__Certificates__Default__Password: The certificate password.
+# As a recommendation, these variables should be defined by your CI/CD system.
+# See: https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-9.0&tabs=windows
+
+# NOTE: Checkout the .env file for environment variables.
+
+services:
+  webapp:
+    container_name: webapp
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        BUILD_CONFIG: ${BUILD_CONFIG}
+        HTTPS_PORT: ${HTTPS_PORT}
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"
+      ASPNETCORE_HTTPS_PORTS: ${HTTPS_PORT}
+      ASPNETCORE_Kestrel__Certificates__Default__Path: ${HTTPS_CERTIFICATE_PATH}
+      ASPNETCORE_Kestrel__Certificates__Default__Password: ${HTTPS_CERTIFICATE_PASSWORD}
+    ports:
+      - "5443:${HTTPS_PORT}"
+    volumes:
+      - ${HOST_ASPNET_CERTS_FOLDER}:${CONTAINER_ASPNET_CERTS_FOLDER}

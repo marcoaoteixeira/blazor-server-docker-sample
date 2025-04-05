@@ -1,0 +1,71 @@
+﻿@page "/"
+
+<PageTitle>Welcome to .NET</PageTitle>
+
+<div class="text-center">
+    <h1>Welcome to .NET</h1>
+</div>
+
+<div align="center">
+    <table class="table table-striped table-hover">
+        <tr>
+            <td>.NET Environment</td>
+            <td>@Model.EnvironmentName</td>
+        </tr>
+        <tr>
+            <td>.NET version</td>
+            <td>@Model.DotNetRuntimeVersion</td>
+        </tr>
+        <tr>
+            <td>Operating system</td>
+            <td>@Model.OperatingSystem</td>
+        </tr>
+        <tr>
+            <td>Processor architecture</td>
+            <td>@Model.ProcessorArchitecture</td>
+        </tr>
+        <tr>
+            <td>CPU cores</td>
+            <td>@Model.ProcessorCount</td>
+        </tr>
+        <tr>
+            <td>Containerized</td>
+            <td>@Model.IsContainerized</td>
+        </tr>
+        <tr>
+            <td>User</td>
+            <td>@Model.CurrentUser</td>
+        </tr>
+        @if (Model.MemoryLimitInBytes > 0)
+        {
+            <tr>
+                <td>Memory limit (on Linux, cgroup)</td>
+                <td>@Model.MemoryLimitInBytes (@GetInBestUnit(Model.MemoryLimitInBytes))</td>
+            </tr>
+            <tr>
+                <td>Memory usage (on Linux, cgroup)</td>
+                <td>@Model.MemoryUsageInBytes (@GetInBestUnit(Model.MemoryUsageInBytes))</td>
+            </tr>
+        }
+        <tr>
+            <td>Memory, total available GC memory</td>
+            <td>@Model.TotalAvailableMemoryInBytes (@GetInBestUnit(Model.TotalAvailableMemoryInBytes))</td>
+        </tr>
+        <tr>
+            <td>Host name</td>
+            <td>@Model.Hostname</td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top">Server IP address</td>
+            <td>
+                @{
+                    foreach (var ip in Model.IpList)
+                    {
+                        @ip
+                        <br/>
+                    }
+                }
+            </td>
+        </tr>
+    </table>
+</div>
