@@ -29,7 +29,7 @@ loaded for you.
 
 ***In Development Mode***
 
-In development mode, you can don't need the certificate.
+In development mode, you don't need the certificate.
 
 ***Launch (on Docker)***
 
