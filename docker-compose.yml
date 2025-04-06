@@ -1,4 +1,4 @@
-name: blazor-server-app
+name: blazor-serverside-app
 
 # To use HTTPS, you'll need a certificate. Also, define Kestrel env variables:
 # ASPNETCORE_Kestrel__Certificates__Default__Path: The path to the certificate.
@@ -9,8 +9,8 @@ name: blazor-server-app
 # NOTE: Checkout the .env file for environment variables.
 
 services:
-  webapp:
-    container_name: webapp
+  serverside-app:
+    container_name: serverside-app
     build:
       context: .
       dockerfile: ./Dockerfile
